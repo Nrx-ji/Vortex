@@ -623,7 +623,7 @@
         }(window, document, 'script',
             'https://connect.facebook.net/en_US/fbevents.js');
 
-        fbq('init', '1600942564864032);
+        fbq('init', '1600942564864032');
         fbq('track', 'PageView');
     </script>
 
@@ -659,7 +659,7 @@
 
             <img class="logo-img"
                 src="dfordhruvlp.jpg"
-                alt="Milkey Real VIP Logo"
+                alt="VORTA X AI PANEL Logo"
                 id="site-logo"
                 loading="eager" />
         </div>
@@ -699,4 +699,208 @@
             aria-label="Free join countdown">
 
             <span class="timer-label">
-                Time Left 
+                Time Left For Free Join
+            </span>
+
+            <span
+                class="timer-display"
+                id="timer-display">
+                00:20
+            </span>
+
+            <p
+                class="timer-note"
+                id="timer-note">
+                Offer starts counting down as soon as you open the page.
+            </p>
+
+        </section>
+
+        <!-- Stats Row -->
+        <div class="stats" aria-label="Platform statistics">
+
+            <div class="stat-item">
+                <span class="stat-value">12k+</span>
+                <span class="stat-label">Members</span>
+            </div>
+
+            <div class="stat-sep"></div>
+
+            <div class="stat-item">
+                <span class="stat-value">24/7</span>
+                <span class="stat-label">Support</span>
+            </div>
+
+            <div class="stat-sep"></div>
+
+            <div class="stat-item">
+                <span class="stat-value">100%</span>
+                <span class="stat-label">Secure</span>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <p>© 2025 All rights reserved.</p>
+
+            <p style="margin-top:6px;">
+                Ads Managed By growth by milkey
+            </p>
+
+        </footer>
+
+    </main>
+
+    <script>
+
+        // Generate twinkling star particles
+        (function () {
+
+            const container = document.getElementById('stars');
+            const count = 60;
+
+            for (let i = 0; i < count; i++) {
+
+                const s = document.createElement('div');
+
+                s.className = 'star';
+
+                const size = Math.random() * 2.5 + 0.8;
+
+                s.style.cssText = `
+                    width: ${size}px;
+                    height: ${size}px;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    --dur: ${(Math.random() * 3 + 2).toFixed(1)}s;
+                    --delay: ${(Math.random() * 4).toFixed(1)}s;
+                `;
+
+                container.appendChild(s);
+            }
+
+        })();
+
+
+        // Free join countdown timer
+        (function () {
+
+            const timerCard =
+                document.getElementById('free-join-timer');
+
+            const timerDisplay =
+                document.getElementById('timer-display');
+
+            const timerNote =
+                document.getElementById('timer-note');
+
+            if (!timerCard || !timerDisplay || !timerNote) {
+                return;
+            }
+
+            let timeLeft = 20;
+
+            function formatTime(seconds) {
+
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+
+                return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            }
+
+            function renderTimer() {
+                timerDisplay.textContent = formatTime(timeLeft);
+            }
+
+            renderTimer();
+
+            const countdown = setInterval(() => {
+
+                timeLeft -= 1;
+
+                if (timeLeft <= 0) {
+
+                    timeLeft = 0;
+
+                    renderTimer();
+
+                    timerCard.classList.add('expired');
+
+                    timerNote.textContent =
+                        'Free join time is over. Register now before the next reset.';
+
+                    clearInterval(countdown);
+
+                    return;
+                }
+
+                renderTimer();
+
+            }, 1000);
+
+        })();
+
+
+        // Button ripple effect
+        document.querySelectorAll('.btn').forEach(btn => {
+
+            btn.addEventListener('click', function (e) {
+
+                const rect = btn.getBoundingClientRect();
+
+                const ripple = document.createElement('span');
+
+                const size =
+                    Math.max(rect.width, rect.height);
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.25);
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${e.clientX - rect.left - size / 2}px;
+                    top: ${e.clientY - rect.top - size / 2}px;
+                    transform: scale(0);
+                    animation: rippleAnim 0.5s ease-out forwards;
+                    pointer-events: none;
+                `;
+
+                btn.appendChild(ripple);
+
+                ripple.addEventListener(
+                    'animationend',
+                    () => ripple.remove()
+                );
+
+            });
+
+        });
+
+    </script>
+
+    <style>
+
+        @keyframes rippleAnim {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+    </style>
+
+    <!-- Cloudflare Insights -->
+    <script
+        type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+        integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+        data-cf-beacon='{"version":"2024.11.0","token":"468154f1cd1d4f1fa940bce4bab83dc5","r":1}'
+        crossorigin="anonymous">
+    </script>
+
+</body>
+
+</html>
